@@ -45,3 +45,14 @@ Usage
 >>> Bongo('xml').routes()
 <ohai><xml><data></data></xml></ohai>
 ```
+
+Copyright
+---------
+
+Copyright (c) 2012 Code for America. See [LICENSE][] for details.
+
+[license]: https://github.com/codeforamerica/bongo/blob/master/LICENSE.mkd
+
+[![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/cfa_template.png)][tracker]
+
+[tracker]: http://stats.codeforamerica.org/projects/bongo
