@@ -36,7 +36,12 @@ class Bongo(object):
         return data
 
     def route(self, tag=None, agency=None, **kwargs):
-        """Get information on a specific route, or all route listings."""
+        """
+        Get information on a specific route, or all route listings.
+
+        >>> Bongo().route('lantern', 'coralville')
+        {"coralville's": {"lantern": "route"}}
+        """
         if agency and tag:
             endpoint = 'route'
             kwargs['agency'] = agency
@@ -46,11 +51,21 @@ class Bongo(object):
         return self.get(endpoint, **kwargs)
 
     def routes(self):
-        """Same as an empty call to the `route` method."""
+        """
+        Same as an empty call to the `route` method.
+
+        >>> Bongo().routes()
+        {"routes": [1234, 5678, 9999]}
+        """
         return self.route()
 
     def stop(self, number=None, **kwargs):
-        """Retrieve information specific to a given stop number."""
+        """
+        Retrieve information specific to a given stop number.
+
+        >>> Bongo().stop(8350)
+        {"stop": {"8350": "information"}}
+        """
         if number:
             endpoint = 'stop'
             kwargs['stopid'] = number
@@ -59,11 +74,21 @@ class Bongo(object):
         return self.get(endpoint, **kwargs)
 
     def stops(self):
-        """Same as an empty call to the `stop` method."""
+        """
+        Same as an empty call to the `stop` method.
+
+        >>> Bongo().stops()
+        {"stops": [1234, 5678, 9999]}
+        """
         return self.stop()
 
     def predict(self, number, **kwargs):
-        """Predict the bus arrival times for a specific stop."""
+        """
+        Predict the bus arrival times for a specific stop.
+
+        >>> Bongo().predict(8350)
+        {"stop": {"8350": "prediction"}}
+        """
         endpoint = 'prediction'
         kwargs['stopid'] = number
         return self.get(endpoint, **kwargs)
