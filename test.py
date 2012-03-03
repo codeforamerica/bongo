@@ -90,6 +90,22 @@ class BongoStops(unittest.TestCase):
         endpoint = 'http://ebongo.org/api/stoplist'
         self.get.assert_called_with(endpoint, params=params)
 
+    def test_stops_method_with_xml_format(self):
+        b = Bongo('xml')
+        b.stops()
+        self.get.return_value = Mock()
+        params = {'format': 'xml'}
+        endpoint = 'http://ebongo.org/api/stoplist'
+        self.get.assert_called_with(endpoint, params=params)
+
+    def test_stop_method_with_xml_format(self):
+        b = Bongo('xml')
+        b.stop(8350)
+        self.get.return_value = Mock()
+        params = {'format': 'xml', 'stopid': 8350}
+        endpoint = 'http://ebongo.org/api/stop'
+        self.get.assert_called_with(endpoint, params=params)
+
 
 class BongoPrediction(unittest.TestCase):
 
