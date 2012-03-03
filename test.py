@@ -3,7 +3,7 @@ Unit tests for the Bongo API wrapper.
 """
 
 import unittest
-from mock import Mock, MagicMock
+from mock import Mock
 
 from bongo import Bongo
 from bongo import bongo
@@ -11,8 +11,11 @@ from bongo import bongo
 
 def set_up_test(test):
     """A small function for setting up test cases."""
-    bongo.req = MagicMock()
+    bongo.req = Mock()
     bongo.json.loads = Mock()
+    response = Mock()
+    response.headers = {'content-type': 'application/json'}
+    bongo.req.get.return_value = response
     test.get = bongo.req.get
 
 
