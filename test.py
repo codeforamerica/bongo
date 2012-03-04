@@ -3,18 +3,18 @@ Unit tests for the Bongo API wrapper.
 """
 
 import unittest
-from mock import Mock
+from mock import Mock, MagicMock
 
 from bongo import Bongo
 from bongo import bongo
 
 
-def set_up_test(test):
+def set_up_test(test, content_type="application/json"):
     """A small function for setting up test cases."""
     bongo.req = Mock()
     bongo.json.loads = Mock()
-    response = Mock()
-    response.headers = {'content-type': 'application/json'}
+    response = MagicMock()
+    response.headers = {'content-type': content_type}
     bongo.req.get.return_value = response
     test.get = bongo.req.get
 
@@ -89,6 +89,12 @@ class BongoStops(unittest.TestCase):
         params = {'format': 'json'}
         endpoint = 'http://ebongo.org/api/stoplist'
         self.get.assert_called_with(endpoint, params=params)
+
+
+class BongoContentType(unittest.TestCase):
+
+    def setUp(self):
+        set_up_test(self, "XML")
 
     def test_stops_method_with_xml_format(self):
         b = Bongo('xml')
