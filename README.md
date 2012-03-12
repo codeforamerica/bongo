@@ -17,6 +17,31 @@ You can install the API wrapper using [`pip`](http://pypi.python.org/pypi/pip).
 Usage
 -----
 
+There are two ways of interacting with the Bongo API.
+
+The first way is just interacting with the `bongo` module.
+
+```python
+>>> import bongo
+
+>>> bongo.routes()
+{"routes": [1234, 5678, 9999]}
+
+>>> bongo.route('lantern', 'coralville')
+{"coralville's": {"lantern": "route"}}
+
+>>> bongo.stops()
+{"stops": [1234, 5678, 9999]}
+
+>>> bongo.stop(8350)
+{"stop": {"8350": "information"}}
+
+>>> bongo.predict(8350)
+{"stop": {"8350": "predictions"}}
+```
+
+The second way is interacting with the `Bongo` class.
+
 ```python
 >>> from bongo import Bongo
 >>> b = Bongo()
@@ -45,6 +70,7 @@ Usage
 >>> Bongo('xml').routes()
 <ohai><xml><data></data></xml></ohai>
 ```
+
 
 Copyright
 ---------

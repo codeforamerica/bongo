@@ -6,17 +6,17 @@ import unittest
 from mock import Mock, MagicMock
 
 from bongo import Bongo
-from bongo import bongo
+from bongo import core
 
 
 def set_up_test(test, content_type="application/json"):
     """A small function for setting up test cases."""
-    bongo.req = Mock()
-    bongo.json.loads = Mock()
+    core.req = Mock()
+    core.json.loads = Mock()
     response = MagicMock()
     response.headers = {'content-type': content_type}
-    bongo.req.get.return_value = response
-    test.get = bongo.req.get
+    core.req.get.return_value = response
+    test.get = core.req.get
 
 
 class BongoInit(unittest.TestCase):
