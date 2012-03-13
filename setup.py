@@ -10,7 +10,7 @@ except ImportError:
 
 setup(
     name="bongo",
-    version="0.1",
+    version="0.2",
     author="Zach Williams",
     author_email="hey@zachwill.com",
     description="An API wrapper for Iowa City's bus data",
