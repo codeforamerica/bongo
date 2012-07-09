@@ -12,7 +12,6 @@ from bongo import core
 def set_up_test(test, content_type="application/json"):
     """A small function for setting up test cases."""
     core.req = Mock()
-    core.json.loads = Mock()
     response = MagicMock()
     response.headers = {'content-type': content_type}
     core.req.get.return_value = response

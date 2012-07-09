@@ -3,7 +3,6 @@ A simple wrapper for the Bongo Iowa City bus API.
 """
 
 import requests as req
-import simplejson as json
 
 
 class Bongo(object):
@@ -19,20 +18,19 @@ class Bongo(object):
         if 'format' not in kwargs:
             kwargs['format'] = self.format
         url = "http://ebongo.org/api/%s" % (endpoint)
-        request = req.get(url, params=kwargs)
-        return self.convert(request)
+        response = req.get(url, params=kwargs)
+        return self.convert(response)
 
-    def convert(self, request):
+    def convert(self, response):
         """Convert a request based on the response type."""
-        content_type = request.headers['content-type']
-        content = request.content
+        content_type = response.headers['content-type']
         if content_type == 'application/json':
-            data = json.loads(content)
-        elif 'stoplist' in request.url:
+            data = response.json
+        elif 'stoplist' in response.url:
             # The `stoplist` endpoint insists that it's HTML.
-            data = json.loads(content)
+            data = response.json
         else:
-            data = content
+            data = response.content
         return data
 
     def route(self, tag=None, agency=None, **kwargs):
