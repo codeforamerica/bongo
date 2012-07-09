@@ -1,6 +1,8 @@
 Bongo
 =====
 
+[![](https://secure.travis-ci.org/codeforamerica/bongo.png?branch=master)](http://travis-ci.org/codeforamerica/bongo)
+
 A simple API wrapper for the [Iowa City bus data
 API](http://www.ebongo.org/api/) -- mainly to use as an example for an
 upcoming blog post.
